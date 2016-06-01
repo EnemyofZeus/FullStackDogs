@@ -1,41 +1,29 @@
 var express = require('express');
 var cors = require('cors');
 var bodyParser = require('body-parser');
+var session = require('express-session');
 
-var dogs = require('./dogs.js');
+
+var dogCtrl = require("./dogCtrl.js");
+var config = require('./config.js');
+var userCtrl = require('./userCtrl.js');
 
 var app = express();
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
+app.use(session(config));
 app.use(express.static(__dirname + '/public'));
 
-app.get('/dogs', function(req, res, next){
-  res.send(dogs);
-});
+app.post('/login', userCtrl;
 
-app.post('/dogs', function(req, res, next){
-  dogs.push(req.body);
-  res.send(dogs);
-});
+app.get('/dogs', dogCtrl.read);
 
-app.put('/dogs/:id', function(req, res, next){
-  for(var i = 0; i < dogs.length; i++){
-    if(req.params.id==dogs[i].name){
-      dogs[i] = req.body;
-    }
-  }
-  res.send(dogs);
-});
+app.post('/dogs', dogCtrl.create );
 
-app.delete('/dogs/:id', function(req,res,next){
-  for(var i = 0; i < dogs.length; i++){
-    if(req.params.id==dogs[i].name){
-      dogs.splice(i, 1);
-    }
-  }
-  res.send(dogs);
-});
+app.put('/dogs/:id', dogCtrl.update);
+
+app.delete('/dogs/:id', dogCtrl.delete);
 
 app.listen(8080, function(){
   console.log("A spaceman. That's what they say I am");
