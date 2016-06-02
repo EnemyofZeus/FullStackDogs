@@ -1,21 +1,21 @@
 var express = require('express');
 var cors = require('cors');
 var bodyParser = require('body-parser');
-var session = require('express-session');
+//var session = require('express-session');
 
 
 var dogCtrl = require("./dogCtrl.js");
-var config = require('./config.js');
+//var config = require('./config.js');
 var userCtrl = require('./userCtrl.js');
 
 var app = express();
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
-app.use(session(config));
+//app.use(session(config));
 app.use(express.static(__dirname + '/public'));
 
-app.post('/login', userCtrl;
+app.post('/login', userCtrl);
 
 app.get('/dogs', dogCtrl.read);
 

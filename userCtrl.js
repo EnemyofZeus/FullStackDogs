@@ -16,9 +16,8 @@ module.exports = function(req,res,next){
   for (var i = 0; i < users.length; i++){
     if(req.body.username == users[i].username && req.body.password == users[i].password){
       userFound = true;
-      req.session.currentUser = user[i];
+      req.session.currentUser = users[i];
       req.session.cookie.maxAge = 3600000;
-      break;
     }
   }
   if (userFound){
