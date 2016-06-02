@@ -15,7 +15,7 @@ app.use(bodyParser.urlencoded());
 //app.use(session(config));
 app.use(express.static(__dirname + '/public'));
 
-app.post('/login', userCtrl);
+// app.post('/login', userCtrl);
 
 app.get('/dogs', dogCtrl.read);
 
