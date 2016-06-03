@@ -1,3 +1,17 @@
 h1 {
-  color: green;
+  color: purple;
+}
+body {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-content: space-around;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Indie Flower', cursive;
+}
+
+#list{
+  width:50vw;
 }
