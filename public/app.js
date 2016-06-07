@@ -23,10 +23,13 @@ $(document).ready(function(){
 
   })
 
-  $('#list').change(updateBoxes(this.id));
-  // $('#btnLogin').on("click", function(){
-  //   login($('#txtUsername').val(), $('#txtPassword').val());
-  // })
+  $('#list').change( function(){
+    var id = $(this).children(":selected").attr("id");
+    updateBoxes(id);
+  });
+  $('#btnLogin').on("click", function(){
+    login($('#txtUsername').val(), $('#txtPassword').val());
+  })
 
 
 
@@ -80,9 +83,9 @@ function deleteDogs(name){
 function login(username, password){
   $.ajax({
     method: "POST",
-    url: "/login",
+    url: "/auth",
     data: {
-      "username":username,
+      "email":username,
       "password":password
     },
     success: console.log("You're logged in")
@@ -93,13 +96,16 @@ function login(username, password){
 function fillList(data){
     $("#list").empty();
     for(var i = 0; i < data.length; i++){
-      $("#list").append($('<option>' , { id:i, value:dogs[i]._id}).text(data[i].name + " the " + data[i].breed));
+      $("#list").append($('<option>' , { class:"dags", id:i, value:dogs[i]._id}).text(data[i].name + " the " + data[i].breed));
     }
   }
 
 function updateBoxes(i){
+  if(i){
     $('#txtName').val(dogs[i].name);
     $('#txtBreed').val(dogs[i].breed);
+    console.log(i);
+  }
 }
 // <select name="select">
 //   <option value="value1">Value 1</option>

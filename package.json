@@ -1,0 +1,30 @@
+{
+  "name": "fullstackdogs",
+  "version": "1.0.0",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
+    "body-parser": "^1.15.1",
+    "cors": "^2.7.1",
+    "express": "^4.13.4",
+    "express-session": "^1.13.0",
+    "mongoose": "^4.4.20",
+    "passport": "^0.3.2",
+    "passport-local": "^1.0.0"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EnemyofZeus/FullStackDogs.git"
+  },
+  "bugs": {
+    "url": "https://github.com/EnemyofZeus/FullStackDogs/issues"
+  },
+  "homepage": "https://github.com/EnemyofZeus/FullStackDogs#readme",
+  "description": "Stop telling me I don't have a description"
+}

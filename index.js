@@ -3,18 +3,30 @@ var cors = require('cors');
 var bodyParser = require('body-parser');
 //var session = require('express-session');
 var mongoose = require('mongoose');
+var passport = require('passport');
+var session = require('express-session');
 
 var dogCtrl = require("./dogCtrl.js");
 var toyCtrl = require("./toyCtrl")
-//var config = require('./config.js');
+var config = require('./config.js');
 var userCtrl = require('./userCtrl.js');
 
 var app = express();
+
+require('./passport/passport.js')(passport);
+
+app.use(session(config));
+app.use(passport.initialize());
+app.use(passport.session());
+
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
 //app.use(session(config));
 app.use(express.static(__dirname + '/public'));
+
+app.post('/auth', passport.authenticate('local-signup'), userCtrl.login);
+app.get('/auth', userCtrl.getUser);
 
 // app.post('/login', userCtrl);
 
